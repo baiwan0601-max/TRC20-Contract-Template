@@ -161,3 +161,13 @@ contract MyToken is ITRC20, Ownable {
         emit Approval(owner_, spender, amount);
     }
 }
+const MyToken = artifacts.require("MyToken");
+
+module.exports = function(deployer) {
+  const name = "MyToken";
+  const symbol = "MTK";
+  const decimals = 6;
+  // initialSupply: 1,000,000 tokens => expressed in smallest units
+  const initialSupply = 1_000_000 * (10 ** decimals);
+  deployer.deploy(MyToken, name, symbol, decimals, initialSupply);
+};
